@@ -5,18 +5,18 @@
         <p class="font-1  font-title white--text">Fly with Ease! Start your journey now!</p>
       </v-container>
     </v-col>
-    <Search class="mb-6 px-4" />
+    <SearchWidget class="mb-6 px-4" />
   </v-row>
 </template>
 
 <script>
-import Search from './search.vue';
+import SearchWidget from './searchwidget.home.vue';
 
 export default {
   name: 'Hero',
 
   components: {
-    Search
+    SearchWidget
   },
 }
 </script>
