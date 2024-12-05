@@ -1,16 +1,13 @@
 <template>
   <div>
-   <heroHomeVue />
-  <div class="bg-1">
-     <specialsHomeVue />
-
-  </div>
+    <heroHomeVue />
+    <specialsHomeVue class="bg-1" />
   </div>
 </template>
 
 <script>
-import heroHomeVue from '../components/Home/hero.home.vue'
-import specialsHomeVue from '../components/Home/specials.home.vue'
+import heroHomeVue from '../components/Home/hero.home.vue';
+// import specialsHomeVue from '../components/Home/specials.home.vue';
 // import recommendHomeVue from '../components/Home/recommend.home.vue'
 
 export default {
@@ -18,11 +15,9 @@ export default {
 
   components: {
     heroHomeVue,
-    specialsHomeVue,
+    // specialsHomeVue,
     // recommendHomeVue,
   },
 }
 </script>
-<style>
-
-</style>
+<style></style>
