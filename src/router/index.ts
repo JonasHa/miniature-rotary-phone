@@ -1,39 +1,34 @@
-import {
-  createRouter,
-  createWebHistory,
-  type RouteRecordRaw,
-} from "vue-router";
-
-const routes: RouteRecordRaw[] = [
+import Home from '@/views/homepage.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: () => import("../views/homepage.vue"),
+    path: '/',
+    component: Home,
     meta: {
-      title: "Skyviator - Book Your Next Flight",
+      title: 'Skyviator - Book Your Next Flight',
     },
   },
-];
+]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     }
     if (to.hash) {
-      return { el: to.hash, behavior: "smooth" };
+      return { el: to.hash, behavior: 'smooth' }
     }
-    return { top: 0, behavior: "smooth" };
+    return { top: 0, behavior: 'smooth' }
   },
-});
+})
 
 // Navigation guards for meta tags
 router.beforeEach((to, _from, next) => {
-  const title = (to.meta.title as string) || "Skyviator";
-  document.title = title;
-  next();
-});
+  const title = (to.meta.title as string) || 'Skyviator'
+  document.title = title
+  next()
+})
 
-export default router;
+export default router

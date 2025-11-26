@@ -1,6 +1,6 @@
 <template>
   <div class="w-full px-4 py-4">
-    <div id="tpwl-search"></div>
+    <div id="tpwl-tickets"></div>
   </div>
 </template>
 

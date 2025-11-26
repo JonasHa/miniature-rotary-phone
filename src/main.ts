@@ -1,16 +1,16 @@
-import { createPinia } from "pinia";
-import { createApp } from "vue";
-import App from "./App.vue";
-import "./assets/tailwind.css";
-import "./css/fonts.css";
-import vuetify from "./plugins/vuetify";
-import router from "./router";
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import App from './App.vue'
+import i18n from './i18n'
+import vuetify from './plugins/vuetify'
+import router from './router'
 
-const app = createApp(App);
-const pinia = createPinia();
+const app = createApp(App)
+const pinia = createPinia()
 
-app.use(pinia);
-app.use(router);
-app.use(vuetify);
+app.use(pinia)
+app.use(router)
+app.use(vuetify)
+app.use(i18n)
 
-app.mount("#app");
+app.mount('#app')
