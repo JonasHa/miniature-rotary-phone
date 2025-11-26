@@ -1,23 +1,13 @@
 <template>
-  <div>
-    <heroHomeVue />
-    <specialsHomeVue class="bg-1" />
+  <div class="min-h-screen">
+    <HeroHome />
+    <SpecialsHome class="bg-gray-100" />
+    <RecommendHome class="bg-white" />
   </div>
 </template>
 
-<script>
-import heroHomeVue from '../components/Home/hero.home.vue';
-// import specialsHomeVue from '../components/Home/specials.home.vue';
-// import recommendHomeVue from '../components/Home/recommend.home.vue'
-
-export default {
-  name: 'Home',
-
-  components: {
-    heroHomeVue,
-    // specialsHomeVue,
-    // recommendHomeVue,
-  },
-}
+<script setup lang="ts">
+import HeroHome from "../components/Home/hero.home.vue";
+import RecommendHome from "../components/Home/recommend.home.vue";
+import SpecialsHome from "../components/Home/specials.home.vue";
 </script>
-<style></style>

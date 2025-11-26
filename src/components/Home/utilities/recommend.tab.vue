@@ -1,97 +1,78 @@
 <template>
   <div>
     <v-row align="center" justify="center" no-gutters>
-      <span class="tab-width">
+      <span class="w-1/3">
         <v-btn
-          v-if="tab == 1"
-          @click="tab = 1;passTab(1)"
-          color="blue lighten-5"
-          style="height:100%"
-          elevation="0"
-          class="mr-1 blue--text btn font-7"
+          :color="localTab === 1 ? 'blue lighten-5' : 'black'"
+          :class="localTab === 1 ? 'text-blue' : ''"
+          @click="handleTabClick(1)"
+          :elevation="0"
+          :plain="localTab !== 1"
+          class="mr-1 normal-case text-xs w-full h-[6vh]"
           dark
-          >Popular</v-btn
         >
-        <v-btn
-          v-else
-          color="black"
-          @click="tab = 1;passTab(1)"
-          elevation="0"
-          plain
-          class="mr-1 btn font-7"
-          dark
-          >Popular</v-btn
-        >
+          Popular
+        </v-btn>
       </span>
-      <span class="tab-width">
+      <span class="w-1/3">
         <v-btn
-          v-if="tab == 2"
-          @click="tab = 2;passTab(2)"
-          color="blue lighten-5"
-          elevation="0"
-          class="mr-1 btn blue--text font-7"
+          :color="localTab === 2 ? 'blue lighten-5' : 'black'"
+          :class="localTab === 2 ? 'text-blue' : ''"
+          @click="handleTabClick(2)"
+          :elevation="0"
+          :plain="localTab !== 2"
+          class="mr-1 normal-case text-xs w-full h-[6vh]"
           dark
-          >Adventure</v-btn
         >
-        <v-btn
-          v-else
-          color="black"
-          @click="tab = 2;passTab(2)"
-          elevation="0"
-          plain
-          class="mr-1 btn font-7"
-          dark
-          >Adventure</v-btn
-        >
+          Adventure
+        </v-btn>
       </span>
-      <span class="tab-width">
+      <span class="w-1/3">
         <v-btn
-          v-if="tab == 3"
-          @click="tab = 3;passTab(3)"
-          color="blue lighten-5"
-          elevation="0"
-          class="mr-1 blue--text btn font-7"
+          :color="localTab === 3 ? 'blue lighten-5' : 'black'"
+          :class="localTab === 3 ? 'text-blue' : ''"
+          @click="handleTabClick(3)"
+          :elevation="0"
+          :plain="localTab !== 3"
+          class="mr-1 normal-case text-xs w-full h-[6vh]"
           dark
-          >Beath</v-btn
         >
-        <v-btn
-          v-else
-          color="black"
-          elevation="0"
-          @click="tab = 3;passTab(3)"
-          text
-          class="mr-1 btn font-7"
-          dark
-          >Beath</v-btn
-        >
+          Beach
+        </v-btn>
       </span>
     </v-row>
   </div>
 </template>
 
-<script>
-export default {
-    props:['tab','tabs'],
-  data() {
-    return {
-     
-    };
-  },
-  methods:{
-      passTab(value){
-          this.$emit("updateValue",value)
-      }
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+interface Tabs {
+  team: number;
+  couple: number;
+  family: number;
+}
+
+const props = defineProps<{
+  tab: number;
+  tabs: Tabs;
+}>();
+
+const emit = defineEmits<{
+  "update-value": [value: number];
+}>();
+
+const localTab = ref(props.tab);
+
+watch(
+  () => props.tab,
+  (newVal) => {
+    localTab.value = newVal;
   }
+);
+
+const handleTabClick = (value: number) => {
+  localTab.value = value;
+  emit("update-value", value);
 };
 </script>
-
-<style>
-.btn {
-  text-transform: none !important;
-  width: 100%;
-  height: 6vh !important;
-}
-.tab-width {
-  width: 33% !important;
-}
-</style>

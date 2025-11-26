@@ -1,29 +1,43 @@
 <template>
   <v-app class="animate__animated animate__fadeIn animate__slow">
-    <v-app-bar :color="color" class="" fixed dark flat>
-      <div class="d-flex align-center ">
-        <p class="font-3 mb-n1" :style="`color:${colo}; padding: 5px 0;`">Skyviator</p>
+    <v-app-bar
+      :color="scrolled ? 'white' : 'transparent'"
+      :elevation="scrolled ? 4 : 0"
+      class="transition-all duration-300"
+      fixed
+      flat
+    >
+      <div class="flex items-center">
+        <p
+          class="text-2xl font-semibold mb-0 py-1.5 transition-colors duration-300"
+          :class="scrolled ? 'text-gray-800' : 'text-white'"
+        >
+          Skyviator
+        </p>
       </div>
-
       <v-spacer></v-spacer>
-
     </v-app-bar>
 
     <v-main>
       <router-view />
     </v-main>
-    <v-footer class="bg-1 ">
+
+    <v-footer class="bg-gray-900">
       <v-container>
-        <div class="d-sm-none d-md-flex">
-          <v-row no-gutters style="" class="footer d-none d-sm-flex ">
-            <p class="font-7">{{ new Date().getFullYear() }} Skyviator © All right reserved</p>
+        <div class="hidden md:block">
+          <v-row no-gutters class="py-8">
+            <p class="text-sm text-gray-400">
+              {{ new Date().getFullYear() }} Skyviator © All rights reserved
+            </p>
             <v-spacer></v-spacer>
           </v-row>
         </div>
-        <v-row no-gutters style="width:100%" class="footer d-flex d-sm-none d-none d-sm-flex d-md-none">
+        <v-row no-gutters class="block md:hidden py-16 w-full">
           <v-spacer></v-spacer>
           <div>
-            <p class="font-7 text-center">{{ new Date().getFullYear() }} Skyviator © All right reserved</p>
+            <p class="text-sm text-gray-400 text-center">
+              {{ new Date().getFullYear() }} Skyviator © All rights reserved
+            </p>
           </div>
           <v-spacer></v-spacer>
         </v-row>
@@ -32,42 +46,21 @@
   </v-app>
 </template>
 
-<script>
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
 import "./css/fonts.css";
-export default {
-  name: 'App',
 
-  data: () => ({
-    //
-    color: "transparent",
-    colo: "white",
-  }),
-  mounted() {
-    const navbar = document.getElementById("nav-bar");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        this.color = "whitesmoke";
-        this.colo = "grey";
-        navbar.classList.add("scale-in-center");
-      } else {
-        this.color = "transparent";
-        this.colo = "white";
-        navbar.classList.remove("scale-in-center");
-        navbar.classList.add("scale-out-center");
-      }
-    });
-  },
+const scrolled = ref(false);
+
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 20;
 };
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
-<style>
-.footer {
-  padding: 4%;
-}
-
-@media screen and (max-width:600px) {
-  .footer {
-    padding: 10%;
-  }
-
-}
-</style>
